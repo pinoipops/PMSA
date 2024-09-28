@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Pain Management Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            background-color: #e8f0fe;
+            border: 1px solid #b8d0e8;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .input-group strong {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type=number] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #b8d0e8;
+            border-radius: 4px;
+            font-family: 'Lexend', sans-serif;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        #managementOptions {
+            display: none;
+        }
+        .management-box {
+            background-color: #e8f8f5;
+            border: 1px solid #a3e4d7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .warning-box {
+            background-color: #fdedec;
+            border: 1px solid #f5b7b1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .note {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pain Management Alert System</h1>
+
+        <div class="input-group">
+            <strong>Step 1: Select Pain Type</strong>
+            <select id="painType">
+                <option value="">Select pain type</option>
+                <option value="gluteal">Gluteal Pain (Sacroiliitis)</option>
+                <option value="gastric">Gastric Pain (Epigastric)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <strong>Step 2: Enter Pain Score (1-10)</strong>
+            <input type="number" id="painScore" min="1" max="10">
+            <button class="btn" onclick="showManagement()">Show Management Options</button>
+        </div>
+
+        <div id="managementOptions">
+            <h2 id="painTypeHeader"></h2>
+            <div id="painManagement" class="management-box"></div>
+        </div>
+
+        <div class="warning-box">
+            <h3>Important Notes:</h3>
+            <ul>
+                <li>Do not exceed recommended doses for any medication.</li>
+                <li>If using NSAIDs like Naproxen, ensure gastroprotection (e.g., Nexium) due to potential gastritis.</li>
+                <li>Be alert for drowsy medications, especially during activities requiring full attention.</li>
+                <li>Consult with your healthcare provider before changing any medication regimen.</li>
+                <li>Always avoid the concurrent use of Controloc and Nexium due to increased risk of side effects.</li>
+                <li>Monitor symptoms closely and reassess the treatment plan if there's no improvement.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showManagement() {
+            const painType = document.getElementById('painType').value;
+            const painScore = parseInt(document.getElementById('painScore').value);
+            const managementDiv = document.getElementById('painManagement');
+            const headerDiv = document.getElementById('painTypeHeader');
+            const optionsDiv = document.getElementById('managementOptions');
+
+            if (!painType || isNaN(painScore) || painScore < 1 || painScore > 10) {
+                alert('Please select a pain type and enter a valid pain score (1-10).');
+                return;
+            }
+
+            optionsDiv.style.display = 'block';
+            headerDiv.textContent = painType === 'gluteal' ? 'Gluteal Pain (Sacroiliitis) Management' : 'Gastric Pain (Epigastric) Management';
+            
+            let management = '';
+            if (painType === 'gluteal') {
+                if (painScore >= 7) {
+                    management = `
+                        <strong>For Severe Sacroiliitis Pain (Pain Score ${painScore}):</strong>
+                        <ul>
+                            <li>Option 1: Celebrex 400mg + Tramadol 50mg every 6 hours (Max 200mg/day Tramadol)</li>
+                            <li>Option 2: Naproxen 550mg + Tramadol 50mg every 6 hours</li>
+                        </ul>
+                    `;
+                } else if (painScore >= 4) {
+                    management = `
+                        <strong>For Moderate Sacroiliitis Pain (Pain Score ${painScore}):</strong>
+                        <ul>
+                            <li>Option 1: Celebrex 200mg + Tramadol 50mg</li>
+                            <li>Option 2: Naproxen 550mg</li>
+                            <li>Option 3: Ultracet (Tramadol 37.5mg + Paracetamol 325mg) - Max 8 tablets/day</li>
+                        </ul>
+                    `;
+                } else {
+                    management = `
+                        <strong>For Mild Sacroiliitis Pain (Pain Score ${painScore}):</strong>
+                        <ul>
+                            <li>Option 1: Celebrex 200mg or 400mg</li>
+                            <li>Option 2: Naproxen 550mg</li>
+                        </ul>
+                    `;
+                }
+                management += `
+                    <strong>Non-Pharmacological Approaches:</strong>
+                    <ul>
+                        <li>Heat Therapy: Use a heat pack for 15-20 minutes, 2-3 times a day</li>
+                        <li>TENS: Apply for 30-60 minutes, 1-3 times daily on the sacroiliac region and lower back muscles</li>
+                    </ul>
+                `;
+            } else {
+                if (painScore >= 7) {
+                    management = `
+                        <strong>For Severe Epigastric Pain (Pain Score ${painScore}):</strong>
+                        <ul>
+                            <li><strong>Controloc (Pantoprazole) 40mg:</strong> Take twice daily.</li>
+                            <li><strong>OR</strong></li>
+                            <li><strong>Nexium (Esomeprazole) 20mg:</strong> Take twice daily.</li>
+                            <li class="note">Do not use both Controloc and Nexium simultaneously.</li>
+                            <li><strong>Simethicone:</strong> 40mg as needed for relief from bloating and gas.</li>
+                            <li><strong>Buscopan (Hyoscine butylbromide):</strong> 10-20mg, 3-4 times daily as needed for cramping pain.</li>
+                            <li><strong>Ganaton (Itopride):</strong> 50mg, 3 times daily before meals to improve gastric motility.</li>
+                            <li><strong>Consider Other Options:</strong> If severe pain persists, consult a healthcare provider for further assessment.</li>
+                        </ul>
+                    `;
+                } else if (painScore >= 4) {
+                    management = `
+                        <strong>For Moderate Epigastric Pain (Pain Score ${painScore}):</strong>
+                        <ul>
+                            <li><strong>Controloc (Pantoprazole) 40mg:</strong> Take once daily.</li>
+                            <li><strong>OR</strong></li>
+                            <li><strong>Nexium (Esomeprazole) 20mg:</strong> Take once daily.</li>
+                            <li><strong>Simethicone:</strong> 40mg as needed.</li>
+                            <li><strong>Ganaton (Itopride):</strong> 50mg, 3 times daily before meals.</li>
+                        </ul>
+                    `;
+                } else {
+                    management = `
+                        <strong>For Mild Epigastric Pain (Pain Score ${painScore}):</strong>
+                        <ul>
+                            <li><strong>Controloc (Pantoprazole) 20mg:</strong> Take once daily.</li>
+                            <li><strong>Simethicone:</strong> 40mg as needed.</li>
+                        </ul>
+                    `;
+                }
+            }
+
+            managementDiv.innerHTML = management;
+        }
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
