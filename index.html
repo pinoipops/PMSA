@@ -189,33 +189,39 @@
                     management = `
                         <strong>For Severe Sacroiliitis Pain (Pain Score ${painScore}):</strong>
                         <ul>
-                            <li>Option 1: Celebrex 400mg + Tramadol 50mg every 6 hours (Max 200mg/day Tramadol)</li>
-                            <li>Option 2: Naproxen 550mg + Tramadol 50mg every 6 hours</li>
+                            <li><strong>Step 1:</strong> Celebrex 400mg daily + Tramadol 50mg every 6 hours (Max 200mg/day).</li>
+                            <li><strong>OR</strong></li>
+                            <li>Naproxen 550mg twice daily + Tramadol 50mg every 6 hours.</li>
+                            <li><strong>Step 2:</strong> Add Nexium 20mg daily for gastric protection if NSAIDs are used >3 days.</li>
+                            <li><strong>Adjuncts:</strong></li>
+                            <ul>
+                                <li>Heat therapy (15-20 mins, 3x/day).</li>
+                                <li>Physical therapy referral for sacroiliac joint stabilization.</li>
+                            </ul>
                         </ul>
                     `;
                 } else if (painScore >= 4) {
                     management = `
                         <strong>For Moderate Sacroiliitis Pain (Pain Score ${painScore}):</strong>
                         <ul>
-                            <li>Option 1: Celebrex 200mg + Tramadol 50mg</li>
-                            <li>Option 2: Naproxen 550mg</li>
-                            <li>Option 3: Ultracet (Tramadol 37.5mg + Paracetamol 325mg) - Max 8 tablets/day</li>
+                            <li><strong>First Line:</strong> Celebrex 200mg daily + Ultracet 1-2 tablets every 6 hours (Max 8 tablets/day).</li>
+                            <li><strong>Alternative:</strong> Naproxen 550mg daily + Tramadol 50mg prn (Max 3 doses/week).</li>
                         </ul>
                     `;
                 } else {
                     management = `
                         <strong>For Mild Sacroiliitis Pain (Pain Score ${painScore}):</strong>
                         <ul>
-                            <li>Option 1: Celebrex 200mg or 400mg</li>
-                            <li>Option 2: Naproxen 550mg</li>
+                            <li>Celebrex 200mg daily OR Naproxen 550mg daily until pain resolves.</li>
+                            <li>Discontinue NSAIDs after 5 days if asymptomatic.</li>
                         </ul>
                     `;
                 }
                 management += `
-                    <strong>Non-Pharmacological Approaches:</strong>
+                    <strong>Non-Pharmacological Essentials:</strong>
                     <ul>
-                        <li>Heat Therapy: Use a heat pack for 15-20 minutes, 2-3 times a day</li>
-                        <li>TENS: Apply for 30-60 minutes, 1-3 times daily on the sacroiliac region and lower back muscles</li>
+                        <li>Yoga/stretching for pelvic alignment.</li>
+                        <li>Avoid prolonged sitting.</li>
                     </ul>
                 `;
             } else {
@@ -223,36 +229,35 @@
                     management = `
                         <strong>For Severe Epigastric Pain (Pain Score ${painScore}):</strong>
                         <ul>
-                            <li><strong>Controloc (Pantoprazole) 40mg:</strong> Take twice daily.</li>
-                            <li><strong>OR</strong></li>
-                            <li><strong>Nexium (Esomeprazole) 20mg:</strong> Take twice daily.</li>
-                            <li class="note">Do not use both Controloc and Nexium simultaneously.</li>
-                            <li><strong>Simethicone:</strong> 40mg as needed for relief from bloating and gas.</li>
-                            <li><strong>Buscopan (Hyoscine butylbromide):</strong> 10-20mg, 3-4 times daily as needed for cramping pain.</li>
-                            <li><strong>Ganaton (Itopride):</strong> 50mg, 3 times daily before meals to improve gastric motility.</li>
-                            <li><strong>Consider Other Options:</strong> If severe pain persists, consult a healthcare provider for further assessment.</li>
+                            <li><strong>Step 1:</strong> Controloc 40mg twice daily OR Nexium 40mg twice daily (Choose ONE PPI).</li>
+                            <li><strong>Step 2:</strong> Add Buscopan 20mg every 8 hours (Max 3 days) for spasms + Simethicone 40mg every 8 hours.</li>
+                            <li><strong>Step 3:</strong> If dysmotility present, add Ganaton 50mg three times daily before meals.</li>
                         </ul>
                     `;
                 } else if (painScore >= 4) {
                     management = `
                         <strong>For Moderate Epigastric Pain (Pain Score ${painScore}):</strong>
                         <ul>
-                            <li><strong>Controloc (Pantoprazole) 40mg:</strong> Take once daily.</li>
-                            <li><strong>OR</strong></li>
-                            <li><strong>Nexium (Esomeprazole) 20mg:</strong> Take once daily.</li>
-                            <li><strong>Simethicone:</strong> 40mg as needed.</li>
-                            <li><strong>Ganaton (Itopride):</strong> 50mg, 3 times daily before meals.</li>
+                            <li>Controloc 40mg daily OR Nexium 20mg daily + Simethicone 40mg as needed.</li>
+                            <li>If bloating persists: Add Ganaton 50mg three times daily for 7 days.</li>
                         </ul>
                     `;
                 } else {
                     management = `
                         <strong>For Mild Epigastric Pain (Pain Score ${painScore}):</strong>
                         <ul>
-                            <li><strong>Controloc (Pantoprazole) 20mg:</strong> Take once daily.</li>
-                            <li><strong>Simethicone:</strong> 40mg as needed.</li>
+                            <li>Controloc 20mg daily for 14 days + Simethicone 40mg prn.</li>
+                            <li><strong>Lifestyle:</strong> Avoid caffeine, alcohol, and heavy meals.</li>
                         </ul>
                     `;
                 }
+                management += `
+                    <strong>Non-Pharmacological Essentials:</strong>
+                    <ul>
+                        <li>Stress reduction (e.g., diaphragmatic breathing).</li>
+                        <li>Small, frequent meals.</li>
+                    </ul>
+                `;
             }
 
             managementDiv.innerHTML = management;
