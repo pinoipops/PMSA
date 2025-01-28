@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Untitled</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,14 +6,23 @@
     <title>Enhanced Pain Management Alert</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --background-color: #f0f4f8;
+            --text-color: #333;
+            --warning-color: #e74c3c;
+        }
+
         body {
             font-family: 'Lexend', sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f0f4f8;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -32,14 +31,17 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         h1, h2, h3 {
             color: #2c3e50;
         }
+
         h1 {
             font-size: 2.5em;
             text-align: center;
             margin-bottom: 30px;
         }
+
         .input-group {
             background-color: #e8f0fe;
             border: 1px solid #b8d0e8;
@@ -47,11 +49,13 @@
             margin-bottom: 20px;
             border-radius: 8px;
         }
+
         .input-group strong {
             font-size: 1.2em;
             display: block;
             margin-bottom: 10px;
         }
+
         select, input[type=number] {
             width: 100%;
             padding: 10px;
@@ -60,8 +64,9 @@
             border-radius: 4px;
             font-family: 'Lexend', sans-serif;
         }
+
         .btn {
-            background-color: #3498db;
+            background-color: var(--primary-color);
             color: white;
             padding: 12px 20px;
             border: none;
@@ -71,12 +76,15 @@
             font-weight: 600;
             transition: background-color 0.3s ease;
         }
-        .btn:hover {
-            background-color: #2980b9;
+
+        .btn:hover, .btn:focus {
+            background-color: var(--secondary-color);
         }
+
         #managementOptions {
             display: none;
         }
+
         .management-box {
             background-color: #e8f8f5;
             border: 1px solid #a3e4d7;
@@ -84,6 +92,7 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
         .warning-box {
             background-color: #fdedec;
             border: 1px solid #f5b7b1;
@@ -91,15 +100,28 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
         .note {
-            color: #e74c3c;
+            color: var(--warning-color);
             font-weight: 600;
         }
+
         ul {
             padding-left: 20px;
         }
+
         li {
             margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -109,7 +131,7 @@
 
         <div class="input-group">
             <strong>Step 1: Select Pain Type</strong>
-            <select id="painType">
+            <select id="painType" aria-label="Select pain type">
                 <option value="">Select pain type</option>
                 <option value="gluteal">Gluteal Pain (Sacroiliitis)</option>
                 <option value="gastric">Gastric Pain (Epigastric)</option>
@@ -118,7 +140,7 @@
 
         <div class="input-group">
             <strong>Step 2: Enter Pain Score (1-10)</strong>
-            <input type="number" id="painScore" min="1" max="10">
+            <input type="number" id="painScore" min="1" max="10" aria-label="Enter pain score">
             <button class="btn" onclick="showManagement()">Show Management Options</button>
         </div>
 
@@ -148,14 +170,19 @@
             const headerDiv = document.getElementById('painTypeHeader');
             const optionsDiv = document.getElementById('managementOptions');
 
-            if (!painType || isNaN(painScore) || painScore < 1 || painScore > 10) {
-                alert('Please select a pain type and enter a valid pain score (1-10).');
+            if (!painType) {
+                alert('Please select a pain type.');
+                return;
+            }
+
+            if (isNaN(painScore) || painScore < 1 || painScore > 10) {
+                alert('Please enter a valid pain score between 1 and 10.');
                 return;
             }
 
             optionsDiv.style.display = 'block';
             headerDiv.textContent = painType === 'gluteal' ? 'Gluteal Pain (Sacroiliitis) Management' : 'Gastric Pain (Epigastric) Management';
-            
+
             let management = '';
             if (painType === 'gluteal') {
                 if (painScore >= 7) {
@@ -231,9 +258,5 @@
             managementDiv.innerHTML = management;
         }
     </script>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
