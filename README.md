@@ -5,6 +5,7 @@ This project provides an interactive pain management alert system designed to he
 ---
 
 ## Features
+![Screenshot](screenshot.png) <!-- Add a screenshot later -->
 
 - **Step-by-Step Guidance**: Users can select the type of pain and enter a pain score to receive tailored management options.
 - **Customized Recommendations**: The system provides specific medication and non-pharmacological approaches based on the pain score.
